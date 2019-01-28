@@ -6,7 +6,7 @@ AARCH = -march=armv5t
 AOPS = --warn --fatal-warnings $(AARCH)
 COPS = -Wall -O2 -nostdlib -nostartfiles -ffreestanding $(AARCH)
 
-notmain_world.bin :  strap.o notmain.o memmap
+notmain.bin :  strap.o notmain.o memmap
 	$(ARMGNU)-ld strap.o notmain.o -T memmap -o notmain.elf
 	$(ARMGNU)-objdump -D notmain.elf > notmain.list
 	$(ARMGNU)-objcopy notmain.elf -O binary notmain.bin
