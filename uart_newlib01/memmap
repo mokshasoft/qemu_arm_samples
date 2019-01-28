@@ -1,0 +1,18 @@
+/* memmap */
+MEMORY
+{
+    ram  : ORIGIN = 0x00010000, LENGTH = 64K
+}
+
+SECTIONS
+{
+   .text : { *(.text*) } > ram
+   .bss  : { *(.text*) } > ram
+   /* create a 2KB (0x800) heap */
+   .heap :
+    {
+        __HeapBase = .;
+        *(.heap*)
+        . = . + 0x800;
+    } > ram
+}
