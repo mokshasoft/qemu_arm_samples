@@ -24,4 +24,6 @@ notmain.bin : memmap vectors.o notmain.o
 	$(ARMGNU)-objdump -D notmain.elf > notmain.list
 	$(ARMGNU)-objcopy notmain.elf notmain.bin -O binary
 
-
+.PHONY : sim
+sim : notmain.bin
+	qemu-system-arm -M lm3s811evb -m 8K -nographic -kernel notmain.bin

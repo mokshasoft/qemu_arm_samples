@@ -23,3 +23,7 @@ clean :
 	rm -f *.bin
 	rm -f *.list
 
+.PHONY : sim
+sim : notmain.bin
+	qemu-system-arm -M versatilepb -m 128M -nographic -kernel notmain.bin
+
